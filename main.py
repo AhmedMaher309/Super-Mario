@@ -1,8 +1,9 @@
 import pygame
-from pygame.locals import *
-from Mario import Mario
 from util import display
 from sound_effects import Sound_Effects, Background_Music
+
+from Mario import Mario
+from blocks import Block
 
 FPS_CLOCK = pygame.time.Clock()
 background_image = pygame.image.load("img/Untitled.png")
@@ -11,11 +12,26 @@ screen_height = 900
 background_image = pygame.transform.scale(background_image, (screen_width, screen_height))
 Mario = Mario(5, 675)
 
+blocks = []
+x = 500
+y = 400
+for i in range(6):
+    block = Block(x, y)
+    blocks.append(block)
+    if i > 1:
+        x += 280
+    else:
+        x += 80
+
+
 sound_effects = Sound_Effects()
 background_music = Background_Music()
 background_music.play()
 
 
+def draw_blocks():
+    for block in blocks:
+        block.draw()
 def update_mario_position(keys):
     if keys[pygame.K_RIGHT] and Mario.x < screen_width - 100:
         Mario.move_mario(10, 0)
@@ -30,6 +46,7 @@ running = True
 while running:
     display.blit(background_image, (1, 0))
     Mario.draw()
+    draw_blocks()
     keys = pygame.key.get_pressed()
     update_mario_position(keys)
     for event in pygame.event.get():
