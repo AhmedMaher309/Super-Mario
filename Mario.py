@@ -14,9 +14,6 @@ class Mario:
         self.y = y
         self.image = get_image()
         self.image = pygame.transform.scale(self.image, (80, 120))
-        self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
         self.jumping = False
         self.jump_speed = 2
         self.jump_height = 200
@@ -37,6 +34,7 @@ class Mario:
         while self.y < self.starting_y:
             self.y += self.jump_speed
         self.y = self.starting_y
+
     def draw(self):
         display.blit(self.image, (self.x, self.y))
 
