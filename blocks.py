@@ -13,6 +13,7 @@ class Block:
         self.image = get_image()
         self.image = pygame.transform.scale(self.image, (80, 80))
         self.starting_y = self.y
+        self.has_mushroom = False
 
     def draw(self):
         display.blit(self.image, (self.x, self.y))
