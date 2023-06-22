@@ -19,8 +19,10 @@ class Mushroom:
     def draw(self):
         display.blit(self.image, (self.x, self.y))
 
-    def move_to_ground(self, y_of_the_block):
-        while self.y > y_of_the_block - 80:
+    def move_up(self):
+        while self.y > self.starting_y - 80:
             self.y -= self.moving_speed
 
-
+    def move_left(self):
+        while self.x > 40:
+            self.x -= self.moving_speed

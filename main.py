@@ -7,6 +7,11 @@ from blocks import Block
 from mushroom import Mushroom
 from castle import Castle
 
+
+# sound_effects = Sound_Effects()
+# background_music = Background_Music()
+# background_music.play()
+
 FPS_CLOCK = pygame.time.Clock()
 background_image = pygame.image.load("img/Untitled.png")
 screen_width = 1850
@@ -41,11 +46,6 @@ for i in range(5):
     else:
         x += 82
 
-sound_effects = Sound_Effects()
-background_music = Background_Music()
-background_music.play()
-
-
 def draw_blocks():
     for each_block in blocks:
         each_block.draw()
@@ -71,7 +71,7 @@ def check_blocks_collision(blocks):
             if found_mushroom(each_block):
                 print("Found mushroom")
                 index = blocks.index(each_block)
-                mushrooms[index].move_to_ground(block.y)
+                mushrooms[index].move_up()
 
 
 def found_mushroom(block):
