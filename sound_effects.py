@@ -18,4 +18,6 @@ class Background_Music:
     def play(self):
         pygame.mixer.music.play(-1)
 
+    def stop(self):
+        pygame.mixer.music.stop()
 

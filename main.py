@@ -8,9 +8,9 @@ from mushroom import Mushroom
 from castle import Castle
 
 
-# sound_effects = Sound_Effects()
-# background_music = Background_Music()
-# background_music.play()
+sound_effects = Sound_Effects()
+background_music = Background_Music()
+background_music.play()
 
 FPS_CLOCK = pygame.time.Clock()
 background_image = pygame.image.load("img/Untitled.png")
@@ -79,6 +79,17 @@ def found_mushroom(block):
         return True
     return False
 
+def is_winning_state():
+    mario_rect = Mario.image.get_rect(topleft=(Mario.x, Mario.y))
+    castle_rect = castle.image.get_rect(topleft=(castle.x+300, castle.y))
+    if mario_rect.colliderect(castle_rect):
+        print("You won!")
+        image = pygame.image.load("img/won.jpg")
+        background_image = pygame.transform.scale(image, (screen_width, screen_height))
+        display.blit(background_image, (0, 0))
+        pygame.display.update()
+        background_music.stop()
+        running = False
 
 running = True
 while running:
@@ -90,6 +101,7 @@ while running:
     keys = pygame.key.get_pressed()
     update_mario_position(keys)
     check_blocks_collision(blocks)
+    is_winning_state()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
