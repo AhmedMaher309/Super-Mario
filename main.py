@@ -89,7 +89,10 @@ def is_winning_state():
         display.blit(background_image, (0, 0))
         pygame.display.update()
         background_music.stop()
-        running = False
+        pygame.time.delay(3000)
+        return False
+    return True
+
 
 running = True
 while running:
@@ -101,7 +104,7 @@ while running:
     keys = pygame.key.get_pressed()
     update_mario_position(keys)
     check_blocks_collision(blocks)
-    is_winning_state()
+    running = is_winning_state()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
